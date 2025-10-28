@@ -1,5 +1,5 @@
 import CompanionCard from "@/components/CompanionCard";
-import CompletedLessonsTable from "@/components/CompletedLessonsTable";
+import CompanionsList from "@/components/CompanionsList";
 import CTACard from "@/components/CTACard";
 import { featuredCompanions, completedLessons } from "@/lib/types";
 
@@ -27,7 +27,7 @@ export default function Home() {
 
       {/* Bottom Section - Recently Completed Lessons and CTA */}
       <section className="home-section">
-        <CompletedLessonsTable lessons={completedLessons} />
+        <CompanionsList lessons={completedLessons} />
         <CTACard />
       </section>
     </main>
