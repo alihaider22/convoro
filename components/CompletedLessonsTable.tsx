@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import { CompletedLesson } from "@/lib/types";
 import {
@@ -8,6 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useRouter } from "next/navigation";
 
 interface CompletedLessonsTableProps {
   lessons: CompletedLesson[];
@@ -16,6 +18,7 @@ interface CompletedLessonsTableProps {
 export default function CompletedLessonsTable({
   lessons,
 }: CompletedLessonsTableProps) {
+  const router = useRouter();
   return (
     <div className="companion-list">
       <h2 className="text-2xl font-bold text-gray-800">Recent Sessions</h2>
@@ -30,7 +33,11 @@ export default function CompletedLessonsTable({
         </TableHeader>
         <TableBody>
           {lessons.map((lesson, index) => (
-            <TableRow key={lesson.id}>
+            <TableRow
+              key={lesson.id}
+              onClick={() => router.push(`/companions/${lesson.id}`)}
+              className="cursor-pointer"
+            >
               <TableCell>
                 <div className="flex items-center gap-4">
                   <div
