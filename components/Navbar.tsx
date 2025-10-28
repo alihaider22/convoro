@@ -4,7 +4,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const defaultLinkClass =
-  "text-sm font-medium text-foreground transition-colors";
+  "text-sm font-medium text-foreground hover:text-primary transition-colors";
 
 const navigationItems = [
   { href: "/", label: "Home", className: defaultLinkClass },
@@ -33,7 +33,7 @@ export default function Navbar() {
       <div className="flex items-center gap-6">
         {navigationItems.map((item) => {
           const isActive = pathname === item.href;
-          const activeClass = isActive ? "font-semibold" : "";
+          const activeClass = isActive ? "text-primary font-semibold" : "";
           const finalClassName =
             item.className === "btn-signin"
               ? item.className
