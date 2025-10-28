@@ -23,10 +23,10 @@ export default function CompanionCard({
   return (
     <div className="companion-card" style={{ backgroundColor }}>
       {/* Subject tag */}
-      <div className="subject-badge">{subject}</div>
+      <div className="subject-badge absolute top-4 left-4">{subject}</div>
 
       {/* Bookmark icon */}
-      <div className="companion-bookmark">
+      <div className="companion-bookmark absolute top-4 right-4">
         <Image src={bookmarkIcon} alt="Bookmark" width={16} height={16} />
       </div>
 
