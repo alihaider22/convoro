@@ -18,9 +18,7 @@ export default function CompletedLessonsTable({
 }: CompletedLessonsTableProps) {
   return (
     <div className="companion-list">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6">
-        Recently completed lessons
-      </h2>
+      <h2 className="text-2xl font-bold text-gray-800">Recent Sessions</h2>
 
       <Table>
         <TableHeader>
@@ -31,11 +29,14 @@ export default function CompletedLessonsTable({
           </TableRow>
         </TableHeader>
         <TableBody>
-          {lessons.map((lesson) => (
+          {lessons.map((lesson, index) => (
             <TableRow key={lesson.id}>
               <TableCell>
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 flex items-center justify-center">
+                  <div
+                    className="w-10 h-10 flex items-center justify-center rounded-lg p-2"
+                    style={{ backgroundColor: lesson.iconBackground }}
+                  >
                     <Image
                       src={lesson.icon}
                       alt={lesson.subject}

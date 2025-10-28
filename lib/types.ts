@@ -15,6 +15,7 @@ export interface CompletedLesson {
   subject: string;
   duration: string;
   icon: string;
+  iconBackground: string;
 }
 
 export const featuredCompanions: Companion[] = [
@@ -52,6 +53,7 @@ export const completedLessons: CompletedLesson[] = [
     subject: "Science",
     duration: "45 mins",
     icon: "/icons/science.svg",
+    iconBackground: "#D8B4FE",
   },
   {
     id: "algebrina-completed",
@@ -60,6 +62,7 @@ export const completedLessons: CompletedLesson[] = [
     subject: "Maths",
     duration: "20 mins",
     icon: "/icons/maths.svg",
+    iconBackground: "#FDE68A",
   },
   {
     id: "luna-completed",
@@ -68,6 +71,7 @@ export const completedLessons: CompletedLesson[] = [
     subject: "Language",
     duration: "32 mins",
     icon: "/icons/language.svg",
+    iconBackground: "#BFDBFE",
   },
   {
     id: "codey-completed",
@@ -76,6 +80,7 @@ export const completedLessons: CompletedLesson[] = [
     subject: "Coding",
     duration: "30 mins",
     icon: "/icons/coding.svg",
+    iconBackground: "#FECACA",
   },
   {
     id: "memo-completed",
@@ -84,5 +89,6 @@ export const completedLessons: CompletedLesson[] = [
     subject: "History",
     duration: "15 mins",
     icon: "/icons/history.svg",
+    iconBackground: "#FED7AA",
   },
 ];
