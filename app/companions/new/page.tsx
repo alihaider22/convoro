@@ -1,5 +1,7 @@
+import CompanionForm from "@/components/CompanionForm";
+
 const page = () => {
-  return <div>create new companion page</div>;
+  return <CompanionForm />;
 };
 
 export default page;
