@@ -2,13 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import {
-  SignInButton,
-  SignUpButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from "@clerk/nextjs";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 const defaultLinkClass =
   "text-sm font-medium text-foreground hover:text-primary transition-colors";
@@ -49,14 +43,15 @@ export default function Navbar() {
           );
         })}
         <SignedOut>
-          <SignInButton>
-            <button className="btn-signin">Sign In</button>
-          </SignInButton>
-          <SignUpButton>
-            <button className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Sign Up
-            </button>
-          </SignUpButton>
+          <Link href="/sign-in" className="btn-signin">
+            Sign In
+          </Link>
+          <Link
+            href="/sign-up"
+            className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+          >
+            Sign Up
+          </Link>
         </SignedOut>
         <SignedIn>
           <UserButton />
