@@ -16,6 +16,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { createCompanion } from "@/lib/actions/companion.actions";
 
 const subjects = [
   "Science",
@@ -26,13 +27,13 @@ const subjects = [
   "Economics",
 ];
 
-interface CompanionFormData {
-  companionName: string;
+export interface CompanionFormData {
+  name: string;
   subject: string;
-  helpDescription: string;
+  topic: string;
   voice: string;
   style: string;
-  duration: string;
+  duration: number;
 }
 
 const CompanionForm = () => {
@@ -47,13 +48,15 @@ const CompanionForm = () => {
     defaultValues: {
       voice: "male",
       style: "formal",
-      duration: "10",
+      duration: 10,
     },
   });
 
-  const onSubmit = (data: CompanionFormData) => {
+  const onSubmit = async (data: CompanionFormData) => {
     console.log("Form submitted:", data);
     // Handle form submission here
+    const companion = await createCompanion(data);
+    console.log("Companion created:", companion);
   };
 
   return (
@@ -71,7 +74,7 @@ const CompanionForm = () => {
           <FieldContent>
             <Input
               id="companionName"
-              {...register("companionName", {
+              {...register("name", {
                 required: "Companion name is required",
                 minLength: {
                   value: 3,
@@ -79,11 +82,9 @@ const CompanionForm = () => {
                 },
               })}
               placeholder="Enter companion name"
-              aria-invalid={errors.companionName ? "true" : "false"}
+              aria-invalid={errors.name ? "true" : "false"}
             />
-            {errors.companionName && (
-              <FieldError>{errors.companionName.message}</FieldError>
-            )}
+            {errors.name && <FieldError>{errors.name.message}</FieldError>}
           </FieldContent>
         </Field>
 
@@ -118,13 +119,13 @@ const CompanionForm = () => {
         </Field>
 
         <Field>
-          <FieldLabel htmlFor="helpDescription">
+          <FieldLabel htmlFor="topic">
             What should the companion help with
           </FieldLabel>
           <FieldContent>
             <Textarea
-              id="helpDescription"
-              {...register("helpDescription", {
+              id="topic"
+              {...register("topic", {
                 required: "Please describe what the companion should help with",
                 minLength: {
                   value: 10,
@@ -132,11 +133,9 @@ const CompanionForm = () => {
                 },
               })}
               placeholder="Describe what the companion should help with"
-              aria-invalid={errors.helpDescription ? "true" : "false"}
+              aria-invalid={errors.topic ? "true" : "false"}
             />
-            {errors.helpDescription && (
-              <FieldError>{errors.helpDescription.message}</FieldError>
-            )}
+            {errors.topic && <FieldError>{errors.topic.message}</FieldError>}
           </FieldContent>
         </Field>
 
