@@ -17,6 +17,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { createCompanion } from "@/lib/actions/companion.actions";
+import { redirect } from "next/navigation";
 
 const subjects = [
   "Science",
@@ -53,10 +54,8 @@ const CompanionForm = () => {
   });
 
   const onSubmit = async (data: CompanionFormData) => {
-    console.log("Form submitted:", data);
-    // Handle form submission here
     const companion = await createCompanion(data);
-    console.log("Companion created:", companion);
+    redirect(`/companions/${companion.id}`);
   };
 
   return (
