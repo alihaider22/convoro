@@ -15,6 +15,32 @@ const subjectOptions = [
   { label: "Economics", value: "Economics" },
 ];
 
+const cardBackgroundPalette = [
+  "#FCE7F3",
+  "#DBEAFE",
+  "#FEF3C7",
+  "#E0F2FE",
+  "#E9D5FF",
+  "#FFD6A5",
+  "#C7F9CC",
+  "#FFE5EC",
+];
+
+const getBackgroundColor = (key) => {
+  if (!key) {
+    return cardBackgroundPalette[0];
+  }
+
+  let hash = 0;
+  for (let i = 0; i < key.length; i += 1) {
+    hash = (hash << 5) - hash + key.charCodeAt(i);
+    hash |= 0; // Convert to 32bit integer
+  }
+
+  const index = Math.abs(hash) % cardBackgroundPalette.length;
+  return cardBackgroundPalette[index];
+};
+
 const CompanionsPage = async ({ searchParams }: SearchParams) => {
   const filters = await searchParams;
   const topic = filters?.topic || "";
@@ -50,7 +76,11 @@ const CompanionsPage = async ({ searchParams }: SearchParams) => {
       </section>
       <section className="companions-grid">
         {companions.map((companion) => (
-          <CompanionCard key={companion.id} {...companion} />
+          <CompanionCard
+            key={companion.id}
+            {...companion}
+            backgroundColor={getBackgroundColor(companion.id)}
+          />
         ))}
       </section>
     </main>
