@@ -1,6 +1,8 @@
 import { getCompanion } from "@/lib/actions/companion.actions";
 import Image from "next/image";
 import { getBackgroundColor } from "../page";
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
 const CompanionDetailPage = async ({
   params,
@@ -15,9 +17,16 @@ const CompanionDetailPage = async ({
     duration,
     subject,
   } = await getCompanion(id);
+
+  const { userId } = await auth();
+  if (!userId) {
+    redirect(`/sign-in?redirect_url=/companions/${id}`);
+  }
+
   if (!companionId) {
     return <div>Companion not found</div>;
   }
+
   return (
     <main>
       <article className="flex rounded-border justify-between p-6 max-md:flex-col">
