@@ -26,7 +26,7 @@ const cardBackgroundPalette = [
   "#FFE5EC",
 ];
 
-const getBackgroundColor = (key) => {
+export const getBackgroundColor = (key) => {
   if (!key) {
     return cardBackgroundPalette[0];
   }
