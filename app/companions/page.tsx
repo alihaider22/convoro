@@ -31,18 +31,20 @@ const CompanionsPage = async ({ searchParams }: SearchParams) => {
 
   return (
     <main className="space-y-8">
-      <section className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <h1 className="text-3xl font-bold text-gray-800">Companions Library</h1>
-        <div className="flex flex-col gap-3 md:flex-row md:items-center">
+      <section className="flex flex-wrap items-center justify-between gap-4">
+        <h1 className="text-3xl font-bold text-gray-800 max-w-full">
+          Companions Library
+        </h1>
+        <div className="flex flex-wrap items-center gap-3 md:flex-nowrap">
           <SearchInput
             paramKey="topic"
             placeholder="Search companions by topic..."
-            className="md:max-w-xs"
+            className="w-full max-w-xs md:max-w-xs"
           />
           <SubjectFilter
             options={subjectOptions}
             placeholder="Filter by subject"
-            triggerClassName="md:w-48"
+            triggerClassName="w-full max-w-xs md:w-48"
           />
         </div>
       </section>
