@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { CompletedLesson } from "@/lib/types";
 import {
   Table,
   TableBody,
@@ -9,12 +8,15 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import Link from "next/link";
+import { Companion } from "@/lib/types";
+import { getSubjectColor } from "@/lib/utils";
 
 interface CompanionsListProps {
-  lessons: CompletedLesson[];
+  companions: Companion[];
 }
 
-export default function CompanionsList({ lessons }: CompanionsListProps) {
+export default function CompanionsList({ companions }: CompanionsListProps) {
+  console.log(companions);
   return (
     <div className="companion-list">
       <h2 className="text-2xl font-bold text-gray-800">Recent Sessions</h2>
@@ -22,45 +24,47 @@ export default function CompanionsList({ lessons }: CompanionsListProps) {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Lessons</TableHead>
+            <TableHead>Companions</TableHead>
             <TableHead>Subject</TableHead>
             <TableHead>Duration</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {lessons.map((lesson, index) => (
-            <TableRow key={lesson.id}>
+          {companions.map((companion) => (
+            <TableRow key={companion.id}>
               <TableCell>
-                <Link href={`/companions/${lesson.id}`}>
-                  <div className="flex items-center gap-4">
+                <Link href={`/companions/${companion.id}`}>
+                  <div className="flex items-center gap-2">
                     <div
                       className="w-10 h-10 flex items-center justify-center rounded-lg p-2"
-                      style={{ backgroundColor: lesson.iconBackground }}
+                      style={{
+                        backgroundColor: getSubjectColor(companion.subject),
+                      }}
                     >
                       <Image
-                        src={lesson.icon}
-                        alt={lesson.subject}
+                        src={`/icons/${companion.subject}.svg`}
+                        alt={companion.subject}
                         width={24}
                         height={24}
                       />
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-800">
-                        {lesson.title}
+                        {companion.title}
                       </h3>
                       <p className="text-sm text-gray-600">
-                        Topic: {lesson.topic}
+                        Topic: {companion.topic}
                       </p>
                     </div>
                   </div>
                 </Link>
               </TableCell>
               <TableCell>
-                <div className="subject-badge">{lesson.subject}</div>
+                <div className="subject-badge">{companion.subject}</div>
               </TableCell>
               <TableCell>
                 <div className="text-sm text-gray-600 font-medium">
-                  {lesson.duration}
+                  {companion.duration}
                 </div>
               </TableCell>
             </TableRow>

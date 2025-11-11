@@ -1,12 +1,18 @@
 import CompanionCard from "@/components/CompanionCard";
 import CompanionsList from "@/components/CompanionsList";
 import CTACard from "@/components/CTACard";
-import { getCompanions } from "@/lib/actions/companion.actions";
-import { completedLessons } from "@/lib/types";
+import {
+  getCompanions,
+  getRecentSessions,
+} from "@/lib/actions/companion.actions";
 import { getSubjectColor } from "@/lib/utils";
 
 export default async function Home() {
   const companions = await getCompanions({ limit: 3 });
+  const recentSessionsCompanions: Companion[] = await getRecentSessions({
+    limit: 10,
+  });
+
   return (
     <main>
       {/* Dashboard Heading */}
@@ -30,7 +36,7 @@ export default async function Home() {
 
       {/* Bottom Section - Recently Completed Lessons and CTA */}
       <section className="home-section">
-        <CompanionsList lessons={completedLessons} />
+        <CompanionsList companions={recentSessionsCompanions} />
         <CTACard />
       </section>
     </main>
