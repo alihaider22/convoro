@@ -24,7 +24,7 @@ export default async function Home() {
           <CompanionCard
             key={companion.id}
             id={companion.id}
-            title={companion.title}
+            title={companion.name}
             topic={companion.topic}
             duration={companion.duration}
             subject={companion.subject}

@@ -36,7 +36,7 @@ export default function CompanionCard({
         <h3 className="text-xl font-bold text-gray-800">{title}</h3>
 
         {/* Topic */}
-        <p className="text-sm text-gray-600">Topic: {topic}</p>
+        <p className="text-sm text-gray-600">{topic}</p>
 
         {/* Duration */}
         <div className="flex items-center gap-2 text-sm text-gray-600">

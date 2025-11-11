@@ -8,7 +8,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import Link from "next/link";
-import { Companion } from "@/lib/types";
 import { getSubjectColor } from "@/lib/utils";
 
 interface CompanionsListProps {
@@ -24,7 +23,7 @@ export default function CompanionsList({ companions }: CompanionsListProps) {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Companions</TableHead>
+            <TableHead>Lessons</TableHead>
             <TableHead>Subject</TableHead>
             <TableHead>Duration</TableHead>
           </TableRow>
@@ -49,12 +48,8 @@ export default function CompanionsList({ companions }: CompanionsListProps) {
                       />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-800">
-                        {companion.title}
-                      </h3>
-                      <p className="text-sm text-gray-600">
-                        Topic: {companion.topic}
-                      </p>
+                      <h3 className="font-semibold">{companion.name}</h3>
+                      <p className="text-sm">{companion.topic}</p>
                     </div>
                   </div>
                 </Link>
