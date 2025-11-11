@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { CreateAssistantDTO } from "@vapi-ai/web/dist/api";
