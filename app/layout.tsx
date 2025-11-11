@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Converso",
+  title: "Convoro",
   description: "Your AI-powered learning companion",
 };
 

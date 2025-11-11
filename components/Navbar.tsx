@@ -22,7 +22,7 @@ export default function Navbar() {
       <Link href="/" className="flex items-center">
         <Image
           src="/images/logo.svg"
-          alt="Converso Logo"
+          alt="Convoro Logo"
           width={120}
           height={40}
           className="h-8 w-auto"
