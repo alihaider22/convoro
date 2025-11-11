@@ -35,7 +35,7 @@ export default function CompanionsList({ companions }: CompanionsListProps) {
                 <Link href={`/companions/${companion.id}`}>
                   <div className="flex items-center gap-2">
                     <div
-                      className="w-10 h-10 flex items-center justify-center rounded-lg p-2"
+                      className="w-12 h-12 flex items-center justify-center rounded-lg p-2"
                       style={{
                         backgroundColor: getSubjectColor(companion.subject),
                       }}
@@ -47,7 +47,7 @@ export default function CompanionsList({ companions }: CompanionsListProps) {
                         height={24}
                       />
                     </div>
-                    <div>
+                    <div className="flex flex-col gap-1">
                       <h3 className="font-semibold">{companion.name}</h3>
                       <p className="text-sm">{companion.topic}</p>
                     </div>
@@ -59,7 +59,7 @@ export default function CompanionsList({ companions }: CompanionsListProps) {
               </TableCell>
               <TableCell>
                 <div className="text-sm text-gray-600 font-medium">
-                  {companion.duration}
+                  {companion.duration} mins
                 </div>
               </TableCell>
             </TableRow>
