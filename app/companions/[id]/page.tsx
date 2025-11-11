@@ -1,8 +1,9 @@
 import { getCompanion } from "@/lib/actions/companion.actions";
 import Image from "next/image";
-import { getBackgroundColor } from "../page";
-import { auth } from "@clerk/nextjs/server";
+import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
+import { getSubjectColor } from "@/lib/utils";
+import CompanionComponent from "@/components/CompanionComponent";
 
 const CompanionDetailPage = async ({
   params,
@@ -10,22 +11,13 @@ const CompanionDetailPage = async ({
   params: Promise<{ id: string }>;
 }) => {
   const { id } = await params;
-  const {
-    id: companionId,
-    title,
-    topic,
-    duration,
-    subject,
-  } = await getCompanion(id);
+  const companion = await getCompanion(id);
+  const user = await currentUser();
 
-  const { userId } = await auth();
-  if (!userId) {
-    redirect(`/sign-in?redirect_url=/companions/${id}`);
-  }
+  const { name, subject, title, topic, duration } = companion;
 
-  if (!companionId) {
-    return <div>Companion not found</div>;
-  }
+  if (!user) redirect(`/sign-in?redirect_url=/companions/${id}`);
+  if (!name) redirect("/companions");
 
   return (
     <main>
@@ -33,19 +25,20 @@ const CompanionDetailPage = async ({
         <div className="flex items-center gap-2">
           <div
             className="size-[72px] flex items-center justify-center rounded-lg max-md:hidden"
-            style={{ backgroundColor: getBackgroundColor(companionId) }}
+            style={{ backgroundColor: getSubjectColor(subject) }}
           >
             <Image
               src={`/icons/${subject}.svg`}
-              alt="Companion icon"
+              alt={subject}
               width={35}
               height={35}
             />
           </div>
+
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
-              <p className="font-bold text-2xl">{title}</p>
-              <div className="subject-badge max-md:hidden">{subject}</div>
+              <p className="font-bold text-2xl">{name}</p>
+              <div className="subject-badge max-sm:hidden">{subject}</div>
             </div>
             <p className="text-lg">{topic}</p>
           </div>
@@ -54,6 +47,13 @@ const CompanionDetailPage = async ({
           {duration} minutes
         </div>
       </article>
+
+      <CompanionComponent
+        {...companion}
+        companionId={id}
+        userName={user.firstName!}
+        userImage={user.imageUrl!}
+      />
     </main>
   );
 };
