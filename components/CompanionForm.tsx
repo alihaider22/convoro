@@ -64,9 +64,7 @@ const CompanionForm = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="max-w-2xl mx-auto p-6 space-y-6"
       >
-        <h1 className="text-3xl font-bold text-gray-800 mb-6">
-          Create New Companion
-        </h1>
+        <h1 className="text-3xl font-bold mb-6">Create New Companion</h1>
 
         <Field>
           <FieldLabel htmlFor="companionName">Companion Name</FieldLabel>

@@ -21,9 +21,7 @@ export default function CompanionsList({
 }: CompanionsListProps) {
   return (
     <div className="companion-list">
-      <h2 className="text-2xl font-bold text-gray-800">
-        {title || "Recent Sessions"}
-      </h2>
+      <h2 className="text-2xl font-bold">{title || "Recent Sessions"}</h2>
 
       <Table>
         <TableHeader>
@@ -63,7 +61,7 @@ export default function CompanionsList({
                 <div className="subject-badge">{companion.subject}</div>
               </TableCell>
               <TableCell>
-                <div className="text-sm text-gray-600 font-medium">
+                <div className="text-sm font-medium">
                   {companion.duration} mins
                 </div>
               </TableCell>

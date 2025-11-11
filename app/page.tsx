@@ -16,7 +16,7 @@ export default async function Home() {
   return (
     <main>
       {/* Dashboard Heading */}
-      <h1 className="text-4xl font-bold text-gray-800 mb-8">Dashboard</h1>
+      <h1 className="text-4xl font-bold mb-8">Popular Companions</h1>
 
       {/* Featured Companions Section */}
       <section className="companions-grid mb-12">

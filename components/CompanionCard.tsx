@@ -33,13 +33,13 @@ export default function CompanionCard({
       {/* Content area with top padding for absolute positioned elements */}
       <div className="pt-10 flex flex-col gap-3">
         {/* Title */}
-        <h3 className="text-xl font-bold text-gray-800">{title}</h3>
+        <h3 className="text-xl font-bold">{title}</h3>
 
         {/* Topic */}
-        <p className="text-sm text-gray-600">{topic}</p>
+        <p className="text-sm">{topic}</p>
 
         {/* Duration */}
-        <div className="flex items-center gap-2 text-sm text-gray-600">
+        <div className="flex items-center gap-2 text-sm">
           <Image src="/icons/clock.svg" alt="Clock" width={16} height={16} />
           <span>{duration} duration</span>
         </div>

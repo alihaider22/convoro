@@ -58,9 +58,7 @@ const CompanionsPage = async ({ searchParams }: SearchParams) => {
   return (
     <main className="space-y-8">
       <section className="flex flex-wrap items-center justify-between gap-4">
-        <h1 className="text-3xl font-bold text-gray-800 max-w-full">
-          Companions Library
-        </h1>
+        <h1 className="text-3xl font-bold max-w-full">Companions Library</h1>
         <div className="flex flex-wrap items-center gap-3 md:flex-nowrap">
           <SearchInput
             paramKey="topic"
