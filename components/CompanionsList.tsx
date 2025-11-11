@@ -12,13 +12,18 @@ import { getSubjectColor } from "@/lib/utils";
 
 interface CompanionsListProps {
   companions: Companion[];
+  title?: string;
 }
 
-export default function CompanionsList({ companions }: CompanionsListProps) {
-  console.log(companions);
+export default function CompanionsList({
+  companions,
+  title,
+}: CompanionsListProps) {
   return (
     <div className="companion-list">
-      <h2 className="text-2xl font-bold text-gray-800">Recent Sessions</h2>
+      <h2 className="text-2xl font-bold text-gray-800">
+        {title || "Recent Sessions"}
+      </h2>
 
       <Table>
         <TableHeader>

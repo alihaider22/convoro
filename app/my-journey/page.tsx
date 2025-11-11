@@ -21,7 +21,6 @@ const page = async () => {
   const recentSessions: Companion[] = await getUserSessions(user.id);
   const userCompanions: Companion[] = await getUserCompanions(user.id);
 
-  console.log(userCompanions);
   return (
     <main className="min-lg:w-3/4">
       <section className="flex justify-between gap-4 max-sm:flex-col items-center">
@@ -70,7 +69,7 @@ const page = async () => {
           </AccordionTrigger>
           <AccordionContent>
             <CompanionsList
-              // title="Recent Sessions"
+              title="Recent Sessions"
               companions={recentSessions}
             />
           </AccordionContent>
@@ -81,7 +80,7 @@ const page = async () => {
           </AccordionTrigger>
           <AccordionContent>
             <CompanionsList
-              // title="My Companions"
+              title={`My Companions (${userCompanions.length})`}
               companions={userCompanions}
             />
           </AccordionContent>
