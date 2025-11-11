@@ -19,6 +19,19 @@ export default function CompanionsList({
   companions,
   title,
 }: CompanionsListProps) {
+  if (!companions.length) {
+    return (
+      <div className="companion-list text-center space-y-3">
+        <h2 className="text-2xl font-bold">{title || "Recent Sessions"}</h2>
+        <div className="rounded-lg border border-dashed border-gray-400 p-8">
+          <p className="text-muted-foreground">
+            No sessions to show yet. Start a conversation to see it here.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="companion-list">
       <h2 className="text-2xl font-bold">{title || "Recent Sessions"}</h2>
