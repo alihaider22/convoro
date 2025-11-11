@@ -1,9 +1,12 @@
 import CompanionCard from "@/components/CompanionCard";
 import CompanionsList from "@/components/CompanionsList";
 import CTACard from "@/components/CTACard";
-import { featuredCompanions, completedLessons } from "@/lib/types";
+import { getCompanions } from "@/lib/actions/companion.actions";
+import { completedLessons } from "@/lib/types";
+import { getSubjectColor } from "@/lib/utils";
 
-export default function Home() {
+export default async function Home() {
+  const companions = await getCompanions({ limit: 3 });
   return (
     <main>
       {/* Dashboard Heading */}
@@ -11,7 +14,7 @@ export default function Home() {
 
       {/* Featured Companions Section */}
       <section className="companions-grid mb-12">
-        {featuredCompanions.map((companion) => (
+        {companions.map((companion) => (
           <CompanionCard
             key={companion.id}
             id={companion.id}
@@ -19,7 +22,7 @@ export default function Home() {
             topic={companion.topic}
             duration={companion.duration}
             subject={companion.subject}
-            backgroundColor={companion.backgroundColor}
+            backgroundColor={getSubjectColor(companion.subject)}
             bookmarkIcon={companion.bookmarkIcon}
           />
         ))}
