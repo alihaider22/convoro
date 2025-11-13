@@ -2,7 +2,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignOutButton,
+  UserButton,
+} from "@clerk/nextjs";
 
 const defaultLinkClass =
   "text-sm font-medium text-foreground hover:text-primary transition-colors";
@@ -48,7 +54,22 @@ export default function Navbar() {
           </SignInButton>
         </SignedOut>
         <SignedIn>
-          <UserButton />
+          <div className="flex items-center gap-4">
+            <UserButton />
+            <SignOutButton>
+              <button
+                className="flex items-center justify-center p-2 hover:opacity-75 transition-opacity cursor-pointer"
+                aria-label="Sign out"
+              >
+                <Image
+                  src="/icons/logout.svg"
+                  alt="Logout"
+                  width={19}
+                  height={20}
+                />
+              </button>
+            </SignOutButton>
+          </div>
         </SignedIn>
       </div>
     </nav>
