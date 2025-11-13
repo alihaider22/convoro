@@ -31,9 +31,10 @@ export const getCompanions = async ({
   topic?: string;
   subject?: string;
 }) => {
+  const { userId } = await auth();
   const supabase = createSupabaseClient();
 
-  let query = supabase.from("companions").select();
+  let query = supabase.from("companions").select("*");
 
   if (topic && subject) {
     query = query.ilike("topic", `%${topic}%`).ilike("subject", `%${subject}%`);
@@ -49,7 +50,28 @@ export const getCompanions = async ({
   if (error || !data) {
     throw new Error(error.message || "Failed to get companions");
   }
-  return data;
+
+  // Check bookmark status for each companion
+  if (userId) {
+    const companionIds = data.map((c: any) => c.id);
+    const { data: bookmarks } = await supabase
+      .from("bookmarks")
+      .select("companion_id")
+      .eq("user_id", userId)
+      .in("companion_id", companionIds);
+
+    const bookmarkedIds = new Set(bookmarks?.map((b) => b.companion_id) || []);
+
+    return data.map((companion: any) => ({
+      ...companion,
+      bookmarked: bookmarkedIds.has(companion.id),
+    }));
+  }
+
+  return data.map((companion: any) => ({
+    ...companion,
+    bookmarked: false,
+  }));
 };
 
 export const getCompanion = async (id: string) => {
@@ -147,4 +169,32 @@ export const newCompanionPermissions = async () => {
   } else {
     return true;
   }
+};
+
+export const bookmarkCompanion = async (companionId: string) => {
+  const { userId } = await auth();
+  const supabase = createSupabaseClient();
+
+  const { data, error } = await supabase
+    .from("bookmarks")
+    .insert({ companion_id: companionId, user_id: userId });
+
+  if (error) throw new Error(error.message);
+
+  return data;
+};
+
+export const unbookmarkCompanion = async (companionId: string) => {
+  const { userId } = await auth();
+  const supabase = createSupabaseClient();
+
+  const { error } = await supabase
+    .from("bookmarks")
+    .delete()
+    .eq("companion_id", companionId)
+    .eq("user_id", userId);
+
+  if (error) throw new Error(error.message);
+
+  return { success: true };
 };

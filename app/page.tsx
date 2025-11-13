@@ -31,7 +31,7 @@ export default async function Home() {
             duration={companion.duration}
             subject={companion.subject}
             backgroundColor={getSubjectColor(companion.subject)}
-            bookmarkIcon={companion.bookmarkIcon}
+            bookmarked={companion.bookmarked}
           />
         ))}
       </section>
