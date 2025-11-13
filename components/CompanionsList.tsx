@@ -57,7 +57,7 @@ export default function CompanionsList({
                       }}
                     >
                       <Image
-                        src={`/icons/${companion.subject}.svg`}
+                        src={`/icons/${companion.subject.toLowerCase()}.svg`}
                         alt={companion.subject}
                         width={24}
                         height={24}

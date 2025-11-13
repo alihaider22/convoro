@@ -123,7 +123,7 @@ const CompanionComponent = ({
               )}
             >
               <Image
-                src={`/icons/${subject}.svg`}
+                src={`/icons/${subject.toLowerCase()}.svg`}
                 alt={subject}
                 width={150}
                 height={150}

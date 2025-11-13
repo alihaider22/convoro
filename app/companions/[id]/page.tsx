@@ -28,7 +28,7 @@ const CompanionDetailPage = async ({
             style={{ backgroundColor: getSubjectColor(subject) }}
           >
             <Image
-              src={`/icons/${subject}.svg`}
+              src={`/icons/${subject.toLowerCase()}.svg`}
               alt={subject}
               width={35}
               height={35}
