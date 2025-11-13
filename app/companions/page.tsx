@@ -3,6 +3,7 @@ import CompanionCard from "@/components/CompanionCard";
 import SearchInput from "@/components/SearchInput";
 import SubjectFilter from "@/components/SubjectFilter";
 import { getCompanions } from "@/lib/actions/companion.actions";
+import { getSubjectColor } from "@/lib/utils";
 import { SearchParams } from "next/dist/server/request/search-params";
 
 const subjectOptions = [
@@ -14,32 +15,6 @@ const subjectOptions = [
   { label: "Coding", value: "Coding" },
   { label: "Economics", value: "Economics" },
 ];
-
-const cardBackgroundPalette = [
-  "#FCE7F3",
-  "#DBEAFE",
-  "#FEF3C7",
-  "#E0F2FE",
-  "#E9D5FF",
-  "#FFD6A5",
-  "#C7F9CC",
-  "#FFE5EC",
-];
-
-export const getBackgroundColor = (key) => {
-  if (!key) {
-    return cardBackgroundPalette[0];
-  }
-
-  let hash = 0;
-  for (let i = 0; i < key.length; i += 1) {
-    hash = (hash << 5) - hash + key.charCodeAt(i);
-    hash |= 0; // Convert to 32bit integer
-  }
-
-  const index = Math.abs(hash) % cardBackgroundPalette.length;
-  return cardBackgroundPalette[index];
-};
 
 const CompanionsPage = async ({ searchParams }: SearchParams) => {
   const filters = await searchParams;
@@ -77,7 +52,7 @@ const CompanionsPage = async ({ searchParams }: SearchParams) => {
           <CompanionCard
             key={companion.id}
             {...companion}
-            backgroundColor={getBackgroundColor(companion.id)}
+            backgroundColor={getSubjectColor(companion.subject)}
           />
         ))}
       </section>
