@@ -53,6 +53,7 @@ const CompanionsPage = async ({ searchParams }: SearchParams) => {
             key={companion.id}
             {...companion}
             backgroundColor={getSubjectColor(companion.subject)}
+            bookmarked={companion.bookmarked}
           />
         ))}
       </section>
