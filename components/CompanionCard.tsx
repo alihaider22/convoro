@@ -65,12 +65,15 @@ export default function CompanionCard({
         disabled={isPending || !isSignedIn}
         className="companion-bookmark absolute top-4 right-4"
         aria-label={bookmarked ? "Remove bookmark" : "Add bookmark"}
+        style={{ cursor: isSignedIn ? "pointer" : "not-allowed" }}
       >
         <Image
           src={
-            bookmarked ? "/icons/bookmark-filled.svg" : "/icons/bookmark.svg"
+            bookmarked && isSignedIn
+              ? "/icons/bookmark-filled.svg"
+              : "/icons/bookmark.svg"
           }
-          alt={bookmarked ? "Bookmarked" : "Bookmark"}
+          alt={bookmarked && isSignedIn ? "Bookmarked" : "Bookmark"}
           width={16}
           height={16}
         />
