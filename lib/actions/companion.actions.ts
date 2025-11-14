@@ -175,6 +175,8 @@ export const bookmarkCompanion = async (companionId: string) => {
   const { userId } = await auth();
   const supabase = createSupabaseClient();
 
+  if (!userId) return;
+
   const { data, error } = await supabase
     .from("bookmarks")
     .insert({ companion_id: companionId, user_id: userId });
@@ -187,6 +189,8 @@ export const bookmarkCompanion = async (companionId: string) => {
 export const unbookmarkCompanion = async (companionId: string) => {
   const { userId } = await auth();
   const supabase = createSupabaseClient();
+
+  if (!userId) return;
 
   const { error } = await supabase
     .from("bookmarks")
