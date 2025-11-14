@@ -7,6 +7,7 @@ import {
   bookmarkCompanion,
   unbookmarkCompanion,
 } from "@/lib/actions/companion.actions";
+import { useAuth } from "@clerk/nextjs";
 
 interface CompanionCardProps {
   id: string;
@@ -29,6 +30,7 @@ export default function CompanionCard({
 }: CompanionCardProps) {
   const [bookmarked, setBookmarked] = useState(initialBookmarked);
   const [isPending, startTransition] = useTransition();
+  const { isSignedIn } = useAuth();
 
   const handleBookmarkToggle = async (e: React.MouseEvent) => {
     e.preventDefault();
@@ -60,7 +62,7 @@ export default function CompanionCard({
       {/* Bookmark icon */}
       <button
         onClick={handleBookmarkToggle}
-        disabled={isPending}
+        disabled={isPending || !isSignedIn}
         className="companion-bookmark absolute top-4 right-4"
         aria-label={bookmarked ? "Remove bookmark" : "Add bookmark"}
       >
